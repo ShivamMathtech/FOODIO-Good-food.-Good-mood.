@@ -1,0 +1,18 @@
+services:
+  foodio:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3000
+      DEMO_MODE: "false"
+      COOKIE_SECURE: "false"
+      ALLOWED_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+      DATABASE_PATH: /app/data/foodio.sqlite
+    volumes:
+      - foodio-data:/app/data
+    restart: unless-stopped
+volumes:
+  foodio-data:
